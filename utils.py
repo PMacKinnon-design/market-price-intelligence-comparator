@@ -1,13 +1,19 @@
-
 import pandas as pd
-import os
+from price_lookup import get_online_prices
 
-def parse_uploaded_file(uploaded_file):
-    file_ext = os.path.splitext(uploaded_file.name)[-1].lower()
-    if file_ext == ".csv":
-        df = pd.read_csv(uploaded_file)
-    elif file_ext in [".xls", ".xlsx"]:
-        df = pd.read_excel(uploaded_file)
-    else:
-        raise ValueError("Unsupported file type")
-    return df
+def compare_prices(items, serpapi_key):
+    results = []
+    for item in items:
+        part_number = item.get("part_number")
+        manufacturer = item.get("manufacturer")
+        quoted_price = item.get("quoted_price")
+        best_price, avg_price, urls = get_online_prices(part_number, manufacturer, serpapi_key)
+        results.append({
+            "Part Number": part_number,
+            "Manufacturer": manufacturer,
+            "Quoted Price": quoted_price,
+            "Best Online Price": best_price,
+            "Average Online Price": avg_price,
+            "Sources": ", ".join(urls) if urls else "N/A"
+        })
+    return pd.DataFrame(results)
