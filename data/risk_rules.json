@@ -1,0 +1,23 @@
+[
+  {
+    "keyword": "termination for convenience",
+    "category": "Termination",
+    "severity": "High",
+    "action": "Review for potential one-sided termination risk",
+    "flowdown": "Include mutual termination rights in subcontract"
+  },
+  {
+    "keyword": "most favored nation",
+    "category": "Pricing",
+    "severity": "Medium",
+    "action": "Ensure pricing parity does not conflict with other agreements",
+    "flowdown": "Apply same MFN clause to supplier agreements"
+  },
+  {
+    "keyword": "intellectual property",
+    "category": "IP",
+    "severity": "High",
+    "action": "Verify IP ownership and licensing terms",
+    "flowdown": "Replicate IP protections in subcontractor terms"
+  }
+]
